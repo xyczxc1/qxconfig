@@ -10,5 +10,16 @@
 # hostname = *.api.moji.com
 http-response ^https?:\/\/.*\.api\.moji\.com\/(sns\/json\/profile\/get_info_.+|json\/member_new\/homepage_info.+|user\/personal\/json\/profile_.+|flycard\/novice|shortvideo\/.+) script-path=https://raw.githubusercontent.com/chxm1023/Rewrite/main/mojitianqi.js, requires-body=true, tag=墨迹天气
 
+#************************************#
+# Spotify (不能超高音质)
+# hostname = spclient.wg.spotify.com
+http-request ^https?:\/\/spclient\.wg\.spotify\.com\/(artistview\/v1\/artist|album-entity-view\/v2\/album)\/ script-path=https://raw.githubusercontent.com/app2smile/rules/master/js/spotify-json.js, timeout=10, tag=Spotify-Json
+http-response ^https?:\/\/spclient\.wg\.spotify\.com\/(bootstrap\/v1\/bootstrap|user-customization-service\/v1\/customize)$ script-path=https://raw.githubusercontent.com/app2smile/rules/master/js/spotify-proto.js, requires-body=true, binary-body-mode=true, timeout=10, tag=Spotify-Proto
+
+#************************************#
+# 网易蜗牛读书
+# hostname = p.du.163.com
+http-response ^https?:\/\/p\.du\.163\.com\/gain\/readtime\/info script-path=https://raw.githubusercontent.com/chxm1023/Rewrite/main/wywnds.js, requires-body=true, tag=网易蜗牛读书
+
 [MITM]
-hostname = *.api.moji.com
+hostname = *.api.moji.com,spclient.wg.spotify.com,p.du.163.com
