@@ -1,1 +1,12 @@
+#来源 https://raw.githubusercontent.com/chxm1023/Script_X/main/Collections.sgmodule
 
+[URL Rewrite]
+#去除墨迹天气AD
+^http?:\/\/oss4bpc\.moji\.com\/.\d+\/.\d+\/.\d+\/.+\.jpg - reject
+
+[Script]
+#墨迹天气 hostname = *.api.moji.com
+mojitianqi = type=http-response, pattern=^https?:\/\/.*\.api\.moji\.com\/(sns\/json\/profile\/get_info_.+|json\/member_new\/homepage_info.+|user\/personal\/json\/profile_.+|flycard\/novice|shortvideo\/.+), script-path=https://raw.githubusercontent.com/chxm1023/Rewrite/main/mojitianqi.js, requires-body=true, max-size=-1, timeout=60
+
+[MITM]
+hostname = %APPEND% *.api.moji.com
